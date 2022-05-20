@@ -13,16 +13,20 @@ from thrift.server import TServer
 class CalculadoraHandler:   # Manejador de llamadas al sevicio
 	# Métdos del servicio
     def sumar(self, a, b):
-        return a + b
+        resultado = "El resultado es: " + (a + b)
+        return resultado
     
     def restar(self, a, b):
-        return a - b
+        resultado = "El resultado es: " + (a - b)
+        return resultado
 
     def multiplicar(self, a, b):
-        return a * b
+        resultado = "El resultado es: " + (a * b)
+        return resultado
 
     def dividir(self, a, b):
-        return a / b
+        resultado = "El resultado es: " + (a / b)
+        return resultado
 
 # Crear una instancia del manejador
 manejador = CalculadoraHandler()

@@ -9,6 +9,7 @@ public class CalculadoraCliente {
     public static int leerNumero() {
         int numero = 0;
         Boolean numeroValido = true;
+        System.out.print("Ingresa un número entero: ");
         do {    
             try {
                 Scanner lector = new Scanner(System.in);

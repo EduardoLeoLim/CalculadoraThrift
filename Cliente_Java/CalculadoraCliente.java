@@ -31,7 +31,6 @@ public class CalculadoraCliente {
             HOST = args[0];
             PORT = Integer.parseInt(args[1]);
         }
-        System.out.println(HOST);
 
         TSocket transporte = new TSocket(HOST, PORT);
 		TBinaryProtocol protocolo = new TBinaryProtocol(transporte);

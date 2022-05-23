@@ -1,0 +1,27 @@
+version: "3.9"
+services:
+  servidor:
+    build: "./Servidor_Python"
+    image: "calculadora_servidor_the_alchemist"
+    ports:
+      - "9090:9090"
+    networks:
+      redCalculadora:
+        ipv4_address: 172.24.2.1    
+
+  cliente:
+    build: "./Cliente_Java"
+    image: "calculadora_cliente_the_alchemist"
+    networks:
+      redCalculadora:
+        ipv4_address: 172.24.2.2
+    command: java -cp ./lib/libthrift-0.13.0.jar:./lib/slf4j-api-1.7.30.jar:./lib/slf4j-nop-1.7.30.jar:./gen-java:. CalculadoraCliente 172.24.2.1 9090
+
+networks:
+  redCalculadora:
+    name: red_the_alchemist
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.24.2.0/16"

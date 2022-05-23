@@ -9,8 +9,6 @@ public class CalculadoraCliente {
     public static int leerNumero() {
         int numero = 0;
         Boolean numeroValido = true;
-        System.out.print("Ingresa un número: ");
-        
         do {    
             try {
                 Scanner lector = new Scanner(System.in);
@@ -29,10 +27,11 @@ public class CalculadoraCliente {
         int PORT = 9090;
         
         if (args.length == 2) {
+            
             HOST = args[0];
             PORT = Integer.parseInt(args[1]);
         }
-
+        System.out.println(HOST);
 
         TSocket transporte = new TSocket(HOST, PORT);
 		TBinaryProtocol protocolo = new TBinaryProtocol(transporte);

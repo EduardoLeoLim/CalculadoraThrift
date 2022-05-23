@@ -4,7 +4,4 @@ COPY . /app
 
 WORKDIR /app
 
-EXPOSE 9090
-
 RUN javac -cp ./lib/libthrift-0.13.0.jar:./lib/slf4j-api-1.7.30.jar:./lib/slf4j-nop-1.7.30.jar:./gen-java:. CalculadoraCliente.java
-ENTRYPOINT java -cp ./lib/libthrift-0.13.0.jar:./lib/slf4j-api-1.7.30.jar:./lib/slf4j-nop-1.7.30.jar:./gen-java:. CalculadoraCliente

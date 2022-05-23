@@ -1,5 +1,0 @@
-version: "3.9"
-services:
-  cliente:
-    build: "./Cliente_Java"
-    image: "calculadora_cliente_the_alchemist"

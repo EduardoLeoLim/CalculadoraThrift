@@ -15,7 +15,7 @@ services:
     networks:
       redCalculadora:
         ipv4_address: 172.24.2.2
-    command: java -cp ./lib/libthrift-0.13.0.jar:./lib/slf4j-api-1.7.30.jar:./lib/slf4j-nop-1.7.30.jar:./gen-java:. CalculadoraCliente 172.24.2.1 9090
+    command: java -cp ./lib/libthrift-0.13.0.jar:./lib/slf4j-api-1.7.30.jar:./lib/slf4j-nop-1.7.30.jar:./lib/javax.annotation-api-1.3.2.jar:./gen-java:. CalculadoraCliente 172.24.2.1 9090
 
 networks:
   redCalculadora:

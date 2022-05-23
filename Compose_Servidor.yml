@@ -3,3 +3,5 @@ services:
   servidor:
     build: "./Servidor_Python"
     image: "calculadora_servidor_the_alchemist"
+    ports:
+      - "9090:9090"

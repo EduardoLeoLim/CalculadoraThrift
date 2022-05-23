@@ -2,38 +2,61 @@ import org.apache.thrift.protocol.TBinaryProtocol;
 import org.apache.thrift.transport.TSocket;
 import org.apache.thrift.TException;
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 public class CalculadoraCliente {
 
     public static int leerNumero() {
-        Scanner lector = new Scanner(System.in);
+        int numero = 0;
+        Boolean numeroValido = true;
         System.out.print("Ingresa un número: ");
-        return lector.nextInt();
+        
+        do {    
+            try {
+                Scanner lector = new Scanner(System.in);
+                numero = lector.nextInt();
+                numeroValido = true;
+            } catch (InputMismatchException ex) {
+                System.out.print("Por favor ingresa un número entero: ");
+                numeroValido = false;
+            }
+        } while (numeroValido == false);
+        return numero;    
     }
 
     public static void main(String[] args)  {
-        TSocket transporte = new TSocket("localhost", 9090);
+        String HOST = "localhost";
+        int PORT = 9090;
+        
+        if (args.length == 2) {
+            HOST = args[0];
+            PORT = Integer.parseInt(args[1]);
+        }
+
+
+        TSocket transporte = new TSocket(HOST, PORT);
 		TBinaryProtocol protocolo = new TBinaryProtocol(transporte);
 		Calculadora.Client cliente = new Calculadora.Client(protocolo);
 
         try {
             transporte.open();
             String eleccion;
+            //Borrar consola
+            System.out.println("\nCalculadora con Apache Thrift\n");
+            System.out.println("Elige una operación:");
+            System.out.println("1. Suma");
+            System.out.println("2. Resta");
+            System.out.println("3. Multiplicación");
+            System.out.println("4. Divisón");
+            System.out.println("5. Salir");
             do {
                 Scanner lector = new Scanner(System.in);
                 eleccion = "";
                 int a = 0;
                 int b = 0;
-                //Borrar consola
-                System.out.println("\nCalculadora con Apache Thrift\n");
-                System.out.println("Elige una operación:");
-                System.out.println("1. Suma");
-                System.out.println("2. Resta");
-                System.out.println("3. Multiplicación");
-                System.out.println("4. Divisón");
-                System.out.println("5. Salir");
 
-                System.out.print("Ingresa el número de la operación: ");
+
+                System.out.print("\nIngresa el número de la operación: ");
                 eleccion = lector.nextLine();
 
                 String res = "";
@@ -56,7 +79,7 @@ public class CalculadoraCliente {
                         System.out.print(res + "\n");
                         break;
                     case "5":
-                        System.out.println("Cerrando Calculadora. Presione una tecla\n");
+                        System.out.println("\nSaliendo...\n");
                         break;
                     default:
                         System.out.println("Opción no disponible.\n");
